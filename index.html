@@ -588,6 +588,20 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
 .barra.some { transform: translateY(110%); opacity: 0; pointer-events: none; }
 @media (min-width: 900px) { .barra { display: none; } .rodape { padding-bottom: 36px; } }
 
+/* LGPD: o pixel da Meta só carrega depois do "Aceito" (vindo da versão 27/10, lp2). Cartão branco do sistema, parado e
+   sem brilho; no celular, fica acima da barra do botão. No palco escuro, o botão de contorno ganha tinta escura. */
+.consentimento {
+  position: fixed; z-index: 45; left: max(16px, env(safe-area-inset-left, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  max-width: 380px; padding: 16px 18px; border-radius: 20px; background: var(--white); color: var(--ink);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35); font-size: 13.5px; line-height: 1.5; animation: sobe .5s cubic-bezier(.2,.8,.2,1) both;
+}
+.consentimento[hidden] { display: none; }
+.consentimento a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+.consentimento-botoes { display: flex; gap: 8px; margin-top: 12px; }
+.consentimento .pilula { background: var(--ink); color: var(--white); box-shadow: none; }
+.consentimento .pilula.contorno { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(35,38,32,.28); }
+@media (max-width: 899px) { .consentimento { right: max(16px, env(safe-area-inset-right, 0px)); max-width: none; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
@@ -623,6 +637,7 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
           <span class="selo"><i></i><b>R$ 300/mês</b> com tudo dentro</span>
           <span class="selo"><i></i><b>Gente conferindo</b> antes de você pagar</span>
           <span class="selo"><i></i>Em produção em <b>BH e Uberlândia</b></span>
+          <span class="selo"><i></i><b>Sem fidelidade</b></span>
         </div>
       </div>
 
@@ -950,7 +965,7 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
     <div class="miolo">
       <div class="cab-cena">
         <div><p class="olho">Planos e preço</p><h2>Um preço por mês, <span class="luz">com tudo dentro.</span></h2></div>
-        <p class="lead">Sem parcela extra no fim do ano. Sem cobrança à parte pelo balanço.</p>
+        <p class="lead">Sem parcela extra no fim do ano. Sem cobrança à parte pelo balanço. Sem fidelidade: você cancela quando quiser.</p>
       </div>
       <div class="planos">
         <div class="plano forte ver">
@@ -1003,7 +1018,7 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
       <div>
         <p class="olho">Fale com a SAVA</p>
         <h2>Deixa o médico praticar a medicina. <span class="luz">O resto, deixa com a gente.</span></h2>
-        <p class="lead">Deixe seu contato. Um dos sócios te chama no WhatsApp pra entender o seu caso e mostrar o app.</p>
+        <p class="lead">Deixe seu contato. Um dos sócios te chama no WhatsApp pra entender o seu caso e mostrar o app. Sem fidelidade: você cancela quando quiser.</p>
         <p class="ou-zap">Prefere chamar agora? <a href="https://wa.me/5531984992474?text=Oi%2C%20vim%20pelo%20an%C3%BAncio%20e%20quero%20saber%20mais%20da%20SAVA." target="_blank" rel="noopener">(31) 98499-2474</a> · seg a sex, 8h às 18h</p>
       </div>
 
@@ -1024,7 +1039,7 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
             <div class="isca" aria-hidden="true"><input id="f-site" name="site" tabindex="-1" autocomplete="off"></div>
             <p class="erro" id="erro" role="alert" hidden></p>
             <button class="pilula" type="submit" id="enviar">Quero falar com a SAVA <span class="seta" aria-hidden="true">→</span></button>
-            <p class="form-nota">Só falamos com você sobre a SAVA. Pra sair, basta pedir na conversa.</p>
+            <p class="form-nota">Só falamos com você sobre a SAVA. Pra sair, basta pedir na conversa. <a href="https://savatecnologia.com.br/privacidade" target="_blank" rel="noopener">Política de privacidade</a></p>
           </form>
         </div>
         <div class="pronto" id="pronto" hidden tabindex="-1">
@@ -1043,8 +1058,15 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
     <p class="lema">Contabilidade, nota e imposto do médico PJ, num lugar só.</p>
     <p>SAVA TECH LTDA · CNPJ 69.284.127/0001-86 · R. Araguari, 1720, Santo Agostinho · Belo Horizonte, MG</p>
     <p><a href="https://savatecnologia.com.br" target="_blank" rel="noopener">savatecnologia.com.br</a> · <a href="https://instagram.com/sava.tecnologia" target="_blank" rel="noopener">@sava.tecnologia</a> · (31) 98499-2474</p>
+    <p><a href="https://savatecnologia.com.br/privacidade" target="_blank" rel="noopener">Política de privacidade</a> · <a href="https://savatecnologia.com.br/termos" target="_blank" rel="noopener">Termos de uso</a></p>
   </div>
 </footer>
+
+<!-- LGPD: o pixel da Meta só carrega depois do "Aceito" (ver o script). Sem ID de pixel, este cartão nunca aparece. -->
+<div class="consentimento" id="consentimento" role="dialog" aria-label="Pixel da Meta" hidden>
+  <p>Este anúncio usa o pixel da Meta pra medir quem chega e quem se inscreve. Ele só liga se você aceitar. <a href="https://savatecnologia.com.br/privacidade" target="_blank" rel="noopener">Política de privacidade</a></p>
+  <div class="consentimento-botoes"><button type="button" class="pilula mini" data-escolha="sim">Aceito</button><button type="button" class="pilula contorno mini" data-escolha="nao">Agora não</button></div>
+</div>
 
 <div class="barra some" id="barra"><a class="pilula" href="#comecar">Quero falar com a SAVA <span class="seta" aria-hidden="true">→</span></a></div>
 
@@ -1065,9 +1087,27 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
   const q = new URLSearchParams(location.search)
   const de = (q.get('de') || ['anuncio', q.get('utm_campaign')].filter(Boolean).join(':')).slice(0, 40)
 
-  if (META_PIXEL_ID) {
+  /* LGPD: o pixel só carrega depois do "Aceito". A escolha fica neste aparelho: sem escolha, o cartão aparece;
+     "Agora não" vale até a pessoa limpar o navegador. Sem ID, nada disto acontece. */
+  const CONSENTIMENTO = 'sava.pixel'
+  function ligarPixel() {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js')
     fbq('init', META_PIXEL_ID); fbq('track', 'PageView')
+  }
+  if (META_PIXEL_ID) {
+    let escolha = null
+    try { escolha = localStorage.getItem(CONSENTIMENTO) } catch { /* aba privada: pergunta de novo */ }
+    if (escolha === 'sim') ligarPixel()
+    else if (escolha !== 'nao') {
+      const caixa = $('#consentimento')
+      caixa.hidden = false
+      caixa.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-escolha]'); if (!b) return
+        try { localStorage.setItem(CONSENTIMENTO, b.dataset.escolha) } catch { /* vale só nesta visita */ }
+        caixa.hidden = true
+        if (b.dataset.escolha === 'sim') ligarPixel()
+      })
+    }
   }
 
   /* ------------------------------------------------ fundo: uma rede que respira (verbatim da apresentação "SAVA para médicos",

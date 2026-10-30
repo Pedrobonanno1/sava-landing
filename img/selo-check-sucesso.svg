@@ -1,0 +1,18 @@
+<!-- SAVA · selo sálvia de sucesso.
+     Verbatim de design/sava-nivel2-lote.html:262-273 (slot 03, sheet de "Nota emitida").
+     Motivo de RECOMPENSA. No produto vem com halo respirando + um glint discreto
+     (ver glint.svg) — é o único par halo+glint da espinha fora da HOME. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62 62" width="62" height="62" role="img" aria-label="Selo de confirmação">
+  <defs>
+    <radialGradient id="savaOk" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#A9BB9C"/>
+      <stop offset="100%" stop-color="#75886A"/>
+    </radialGradient>
+    <filter id="savaOkShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="3" flood-color="#23261F" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <circle cx="31" cy="31" r="26" fill="url(#savaOk)" filter="url(#savaOkShadow)"/>
+  <path d="M20 32l7 7 15-15" stroke="#233420" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

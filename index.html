@@ -1,11 +1,23 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Landing do anúncio SAVA</title>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SAVA · contabilidade do médico PJ, resolvida pelo celular</title>
+<!-- Página de anúncio: não entra no Google, pra não concorrer com savatecnologia.com.br. -->
+<meta name="robots" content="noindex">
 <meta name="description" content="Nota fiscal, imposto, pró-labore e declarações da sua empresa médica, feitos pela SAVA direto nos sistemas do governo. Você confere as notas e paga os boletos.">
 <meta name="theme-color" content="#13160F">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SAVA · a burocracia da sua empresa médica, resolvida pelo celular">
 <meta property="og:description" content="Você confere as notas e paga os boletos. O resto é com a SAVA. A partir de R$ 300 por mês.">
 <meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://lp.savatecnologia.com.br/">
+<meta property="og:image" content="https://lp.savatecnologia.com.br/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Um iPhone com a tela inicial do app da SAVA, ao lado da frase: a burocracia da sua empresa médica, resolvida pelo celular.">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 
 <!--
@@ -604,13 +616,19 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
 .consentimento .pilula.contorno { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(35,38,32,.28); }
 @media (max-width: 899px) { .consentimento { right: max(16px, env(safe-area-inset-right, 0px)); max-width: none; bottom: calc(88px + env(safe-area-inset-bottom, 0px)); } }
 
+/* Pular pro conteúdo: invisível até o teclado chegar nele (vindo da lp2). */
+.pular { position: absolute; z-index: 60; left: 16px; top: -64px; padding: 10px 18px; border-radius: 999px; background: var(--amber-light); color: var(--ink); font-size: 14px; font-weight: 700; transition: top .2s cubic-bezier(.2,.8,.2,1); }
+.pular:focus { top: 12px; }
+[hidden] { display: none !important; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }
 </style>
-
-
+</head>
+<body>
+<a class="pular" href="#topo">Pular pro conteúdo</a>
 <canvas id="fundo" aria-hidden="true"></canvas>
 
 <header class="topo faixa">
@@ -623,7 +641,7 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
   </div>
 </header>
 
-<main id="topo">
+<main id="topo" tabindex="-1">
   <!-- ================================================================ HERO -->
   <section class="hero faixa">
     <div class="miolo">
@@ -1083,7 +1101,9 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.2; }
   const espera = (ms) => new Promise((r) => setTimeout(r, ms))
 
   const q = new URLSearchParams(location.search)
-  const de = (q.get('de') || ['anuncio', q.get('utm_campaign')].filter(Boolean).join(':')).slice(0, 40)
+  /* `de` diz de onde veio a inscrição: `?de=` manda; senão "lp" (esta página) + a campanha do anúncio, pra
+     comparar com a lp2 (clara) no CRM. */
+  const de = (q.get('de') || ['lp', q.get('utm_campaign')].filter(Boolean).join(':')).slice(0, 40)
 
   /* LGPD: o pixel só carrega depois do "Aceito". A escolha fica neste aparelho: sem escolha, o cartão aparece;
      "Agora não" vale até a pessoa limpar o navegador. Sem ID, nada disto acontece. */
